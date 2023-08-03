@@ -16,8 +16,10 @@ COLOR_GREEN = (0, 255, 0)
 FPS = pygame.time.Clock()
 
 main_display = pygame.display.set_mode((WIDHT, HEIGHT))
-player = pygame.image.load('player.png').convert_alpha() 
-player_rect = pygame.Rect(0, HEIGHT-player.get_size()[1]-HEIGHT/2, *player.get_size()) # Підганяємо стратову точку гравця до центру
+player = pygame.image.load('car-1.png').convert_alpha() 
+player_rect = pygame.Rect(0, 0, *player.get_size())
+
+score = 0
 
 playing = True
 while playing:
@@ -25,3 +27,9 @@ while playing:
     for event in pygame.event.get():
         if event.type == QUIT:
             playing = False
+
+
+    main_display.blit(FONT.render(str(score), True, COLOR_WHITE), (WIDHT-50,20))
+    main_display.blit(player, player_rect)
+
+    pygame.display.flip()
